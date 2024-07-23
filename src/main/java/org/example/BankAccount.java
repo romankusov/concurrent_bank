@@ -1,16 +1,19 @@
 package org.example;
 
+import java.util.UUID;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class BankAccount {
     private int balance;
+    private final UUID uuid;
 
     private final ReentrantLock lock = new ReentrantLock();
     private final Condition condition = lock.newCondition();
 
     public BankAccount(int balance) {
         this.balance = balance;
+        this.uuid = UUID.randomUUID();
     }
 
     public void deposit(int amount) {
